@@ -1,0 +1,43 @@
+<nav class="navbar navbar-expand bg-dark" *ngIf="currentUser">
+  <div class="navbar-nav">
+    <button mat-raised-button class="nav-item nav-link" routerLink="/home">
+      <mat-icon [ngStyle]="{ color: 'white' }">home</mat-icon>
+      Home
+    </button>
+    <button mat-raised-button class="nav-item nav-link" routerLink="/create">
+      <mat-icon [ngStyle]="{ color: 'white' }">create</mat-icon>
+      Create Task
+    </button>
+    <button mat-raised-button class="nav-item nav-link" routerLink="/archived">
+      <mat-icon [ngStyle]="{ color: 'white' }">archive</mat-icon>
+      Archived Task
+    </button>
+
+    <button
+      mat-raised-button
+      class="nav-item nav-link"
+      (click)="logout()"
+      [ngStyle]="{ cursor: 'pointer' }"
+    >
+      <mat-icon [ngStyle]="{ color: 'white' }">settings_power</mat-icon>
+      Logout
+    </button>
+
+    <div [ngStyle]="{ position: 'absolute', right: '0' }">
+      <!--      <form>-->
+      <label>
+        <input [(ngModel)]="searchText"  type="text" placeholder="Search.."/>
+      </label>
+      <button mat-raised-button (click)="submitSearch()">
+        <mat-icon>search</mat-icon>
+      </button>
+      <!--      </form>-->
+    </div>
+  </div>
+</nav>
+<!-- main app container -->
+<div class="jumbotron">
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+</div>

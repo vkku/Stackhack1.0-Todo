@@ -1,0 +1,38 @@
+<h3>Search Result :</h3>
+<div class="row">
+  <div
+    *ngFor="let task of taskList; let i = index"
+    class="card mt-3 ml-3 col-sm-12 col-md-4 col-lg-4 col-xl-4"
+  >
+    <div class="card">
+      <div class="card-body">
+        <div class="card-title">
+          <label>Title : </label>
+          {{ task.title }}
+        </div>
+        <div class="card-text">
+          <div>
+            <label>Task Description : </label>
+            {{ task.text }}
+          </div>
+
+          <div>
+            <label>Due Date : </label>
+            {{ task.dueDate | date: 'medium' }}
+          </div>
+
+          <div>
+            <label>Label : </label>
+            {{ task.label }}
+          </div>
+          <div>
+            <label>Status : </label>
+            {{ task.status }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <h4  class="ml-5 mt-4" [ngStyle]="{textAlign : 'center'}" *ngIf="taskList.length===0">404..Not Found</h4>
+

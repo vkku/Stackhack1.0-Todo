@@ -1,0 +1,86 @@
+<app-alert></app-alert>
+<h2>Add Task</h2>
+<form [formGroup]="createTaskForm" (ngSubmit)="onTaskSubmit()">
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input
+      id="title"
+      type="text"
+      formControlName="title"
+      class="form-control"
+      [ngClass]="{ 'is-invalid': submitted && f.title.errors }"
+    />
+    <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
+      <div *ngIf="f.title.errors.required">Title is required</div>
+      <div *ngIf="f.title.errors.minlength">
+        Title must be at least 4 characters
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="text">Task Description</label>
+    <textarea
+      type="text"
+      id="text"
+      formControlName="text"
+      class="form-control"
+      placeholder="Enter Task here"
+      [ngClass]="{ 'is-invalid': submitted && f.text.errors }"
+    >
+    </textarea>
+    <div *ngIf="submitted && f.text.errors" class="invalid-feedback">
+      <div *ngIf="f.text.errors.required">Task description is required</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="status">Status</label>
+    <select id="status" class="form-control" formControlName="status">
+      <option value="" selected disabled>Please select</option>
+      <option>New</option>
+      <option>In Progress</option>
+      <option>Completed</option>
+    </select>
+    <div *ngIf="submitted && f.status.errors" class="invalid-feedback">
+      <div *ngIf="f.status.errors.required">Status is required</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="label">Label</label>
+    <select id="label" class="form-control" formControlName="label">
+      <option value="" selected disabled>Please select</option>
+      <option>Work</option>
+      <option>Personal</option>
+      <option>Health</option>
+      <option>Education</option>
+      <option>Others</option>
+    </select>
+    <div *ngIf="submitted && f.label.errors" class="invalid-feedback">
+      <div *ngIf="f.label.errors.required">Label is required</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="due-date">Due Date</label> <br />
+    <input
+      type="datetime-local"
+      id="due-date"
+      formControlName="dueDate"
+      min="currentDateTime"
+    />
+    <div *ngIf="submitted && f.dueDate.errors" class="invalid-feedback">
+      <div *ngIf="f.dueDate.errors.required">Due Date is required</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <button [disabled]="loading" class="btn btn-primary">
+      <span
+        *ngIf="loading"
+        class="spinner-border spinner-border-sm mr-1"
+      ></span>
+      Create Task
+    </button>
+  </div>
+</form>
